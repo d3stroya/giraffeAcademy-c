@@ -17,11 +17,18 @@ int main() {
     int episodes = 100;
     double rate = 8.3;
 
-    /* Then we can use those variables in our code */
+    /* 
+    Then we can use those variables in our code 
+        - Integer --> %d
+        - Float --> %f
+        - Double --> %lf
+        - String --> %s
+        - Character --> %c
+    */
     printf("%s is an australian TV show\n", title);
     printf("premiered in %d,\n", year);
     printf("with %d episodes in its %d seasons.\n", episodes, seasons);
-    printf("Its rate on IMDB is %f", rate);
+    printf("Its rate on IMDB is %lf", rate);
 
     /*
     Variables store values that can be modified.
