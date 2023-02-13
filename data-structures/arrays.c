@@ -20,7 +20,17 @@ int main() {
     nums2[1] = 1;
     printf("\n%d", nums2[0]);
     printf("\n%d", nums2[1]);
-    printf("\n%d", nums2[2]); // Null value
+    // Null value printf("\n%d", nums2[2]); 
 
+    // 1.5. Search or traverse an array
+    for(int i = 0; i < 8; i++) {
+        int num = nums[i];
+        printf("%d\n", num);
+
+        if(num == 12) {
+            printf("The number is 12\n");
+        }
+
+    }
     return 0;
 }
