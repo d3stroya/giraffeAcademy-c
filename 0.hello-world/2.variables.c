@@ -12,7 +12,7 @@ int main() {
     After that, an = and the value. Now that variable is storing the value we have witten.
     */
     char title[] = "Wentworth";
-    const int YEAR = 2013;
+    const int year = 2013;
     int seasons = 8;
     int episodes = 100;
     double rate = 8.3;
@@ -44,7 +44,7 @@ int main() {
     /* year = 2014; */
     rate = 8.7;
     printf("\n\n%s is an australian TV show\n", title);
-    printf("premiered in %d,\n", YEAR);
+    printf("premiered in %d,\n", year);
     printf("with %d episodes in its %d seasons.\n", episodes, seasons);
     printf("Its rate on IMDB is %f", rate);
     return 0;

@@ -19,6 +19,11 @@ In sumery:
     - *: emory position's value
 */
 
+// 4. Pointer to function
+    int addAB(int a, int b) {
+        return a + b;
+    }
+
 int main() {
     char title[] = "Wentworth";
     int num_seasons = 8;
@@ -32,7 +37,7 @@ int main() {
     printf("%s is stored in %p\nand %d is stored in %p\n", title, &title, num_seasons, &num_seasons);
 
     // 2. Create pointer variables
-    int * pTitle = &title; // The value (*) of pTitle is equals to title's memory position (&)
+    int * pTitle = &title; 
     int * pNum_seasons = &num_seasons;
 
     printf("%d\n", pTitle);
@@ -43,5 +48,11 @@ int main() {
 
     // 3. Access the value of a memory position (dereferencing): pNum_seasons is the memory positions; *pNum_seasons is the value inside of it.
     printf("The value of %p is %d\n", pNum_seasons, *pNum_seasons);
+
+    
+    // 4. Execute a function through a pointer
+    int (*ptr)(int, int);
+    ptr = addAB;
+    printf("%d\n", ptr(6, 3));
     
 }

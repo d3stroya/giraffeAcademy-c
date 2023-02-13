@@ -86,6 +86,59 @@ void postorder(struct BstNode * root) {
     printf("%d\n", root -> data);
 }
 
+struct BstNode * findMin(struct BstNode * root) {
+    while(root -> left != NULL) {
+        root = root -> left;
+    }
+    printf("%d\n", root -> data);
+    return root;
+}
+
+struct BstNode * findMax(struct BstNode * root) {
+    while(root -> right != NULL) {
+        root = root -> right;
+    }
+    printf("%d\n", root -> data);
+    return root;
+}
+
+struct BstNode * delete(struct BstNode * root, int data) {
+    // Si el árbol está vacío, devuelve el árbol
+    if(root == NULL) {
+        return root;
+    // Si el valor buscado es menor que el valor del nodo actual, busca por la izquierda
+    } else if(data < root -> data) {
+        root -> left = delete(root -> left, data);
+    // Si el valor buscado es mayor que el valor del nodo actual, busca por la derecha
+    } else if(data > root -> data) {
+        root -> right = delete(root, data);
+    // Hemos encontrado el nodo
+    } else {
+        // Si no tiene hijos, eliminamos el nodo y dejamos el árbol vacío
+        if(root -> left == NULL && root -> right == NULL) {
+            free(root);
+            root = NULL;
+        // Si tiene 1 hijo, creamos un nodo temporal que apunte a la raíz e intercambiamos la raíz por su hijo
+        } else if(root -> left == NULL) {
+            struct BstNode * tmp = root;
+            root = root -> right;
+            free(tmp);
+        } else if(root -> right == NULL) {
+            struct BstNode * tmp = root;
+            root = root -> left;
+            free(tmp);
+        // Si tiene dos hijos, encontramos el nodo con valor máximo de la rama izquierda o el mínimo de la rama derecha, que pasará a ser la raíz
+        } else {
+            // Creamos un puntero temporal al mínimo de la rama derecha
+            struct BstNode * tmp = findMin(root -> right);
+            // le asignamos a la razz el valor del nodo encontrado
+            root -> data = tmp -> data;
+            // En la rama izquierda, aplicamos esta misma función de eliminar recursivamente: busca el valor y actúa según el número de hijos que tenga.
+            root -> right = delete(root -> right, tmp -> data);
+        }
+    }
+    return root;
+}
 
 int main() {
     // Creamos un árbol vacío
@@ -93,9 +146,14 @@ int main() {
     root = insertNode(root, 20);
     root = insertNode(root, 23);
     root = insertNode(root, 10);
-    //printf("Root: %d\n", root -> data);
-    //printf("Root's left pointer: %p\n", root -> left);
-    //printf("Root's right pointer: %p\n", root -> right);
+    root = insertNode(root, 1);
+    root = insertNode(root, 12);
+    root = insertNode(root, 49);
+    root = insertNode(root, 74);
+    root = insertNode(root, 3);
+    root = insertNode(root, 81);
+
+
     printf("Is 10 in the tree? ");
     search(root, 10);
 
@@ -110,5 +168,14 @@ int main() {
 
     printf("Post order:\n");
     postorder(root);
+
+    printf("Searching for minimun value...");
+    findMin(root);
+
+    printf("Searching for maximum value...");
+    findMax(root);
+
+    delete(root, 81);
+
 }
 
